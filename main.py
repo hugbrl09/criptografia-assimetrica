@@ -1,4 +1,6 @@
 from rsa import gerar_chaves, carregar_chaves
+gerar_chaves()
+
 from confidencialidade import criptografar, descriptografar
 from autenticidade import assinar, verificar
 
@@ -10,6 +12,9 @@ menu ="""=== SISTEMA RSA ===\n
 4 - Sair"""
 print(menu)
 
+# if not os.path.exists("private_key.pem") or not os.path.exists("public_key.pem"):
+#     print("🔑 Gerando chaves...")
+#     gerar_chaves()
 private_key, public_key = carregar_chaves()
 
 while True:
