@@ -10,7 +10,6 @@ menu ="""=== SISTEMA RSA ===\n
 2 - Autenticidade (assinar)
 3 - Ambos (assinar + criptografar)
 4 - Sair"""
-print(menu)
 
 # if not os.path.exists("private_key.pem") or not os.path.exists("public_key.pem"):
 #     print("🔑 Gerando chaves...")
@@ -18,6 +17,7 @@ print(menu)
 private_key, public_key = carregar_chaves()
 
 while True:
+    print(menu)
     opcao = input("\nEscolha uma opção: ")
     mensagem = input("\nDigite a mensagem: ").encode("utf-8")
 
@@ -26,6 +26,7 @@ while True:
 
         with open("mensagem_criptografada.bin", "wb") as f:
             f.write(ciphertext)
+        print("\nMensagem criptografada:", ciphertext)
 
         mensagem_original = descriptografar(private_key, ciphertext)
 
@@ -37,6 +38,7 @@ while True:
 
         with open("assinatura.bin", "wb") as f:
             f.write(assinatura)
+        print("\nAssinatura:", assinatura)
 
         verificar(public_key, mensagem, assinatura)
 
@@ -46,9 +48,11 @@ while True:
 
         with open("mensagem_criptografada.bin", "wb") as f:
             f.write(ciphertext)
+        print("\nMensagem criptografada:", ciphertext)
 
         with open("assinatura.bin", "wb") as f:
             f.write(assinatura)
+        print("\nAssinatura:", assinatura)
 
         print("\n🔓 Descriptografando...")
         mensagem_original = descriptografar(private_key, ciphertext)
